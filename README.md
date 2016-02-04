@@ -1,8 +1,9 @@
 # Rack::Downcase
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rack/downcase`. To experiment with that code, run `bin/console` for an interactive prompt.
+Rack::Downcase is a Rack application the downcases the path of every GET request and performs a 301 redirect.
 
-TODO: Delete this and the text above, and describe your gem
+Why? We have other rack middleware that depends on lowercase paths, so we cannot rely on alternative solutions that downcase in the router but do not redirect.
+
 
 ## Installation
 
@@ -22,7 +23,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Rails
+
+**config/application.rb**
+``` ruby
+config.middleware.insert_before(0, "Rack::Slashless")
+```
 
 ## Development
 
@@ -32,5 +38,17 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rack-downcase.
+Bug reports and pull requests are welcome on GitHub at https://github.com/desiringgod/rack-downcase.
 
+## Alternate Solutions
+
+* https://github.com/carstengehling/route_downcaser downcases paths in the router but does not redirect
+* https://rubygems.org/gems/rack-case-insensitive-routes downcases paths in the router but does not redirect
+
+## Acknowledgements
+
+* Basic structure and strategies adapted from https://github.com/gregorym/rack_slashless
+
+## Author
+
+[Ben Hutton](https://github.com/benhutton)
