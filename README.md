@@ -27,7 +27,7 @@ Or install it yourself as:
 
 **config/application.rb**
 ``` ruby
-config.middleware.insert_before(0, "Rack::Slashless")
+config.middleware.insert_before(0, "Rack::Downcase")
 ```
 
 ## Development
