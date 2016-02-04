@@ -11,6 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Redirect urls with uppercase letters to their lowercase equivalents.}
   spec.homepage      = "https://github.com/desiringgod/rack-downcase"
+  spec.license       = 'BSD-3-Clause'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
