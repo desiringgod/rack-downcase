@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: desiringgod/circle-ci:0.11
+        environment:
+          - PGHOST=localhost
+          - PGUSER=ubuntu
+    working_directory: /home/ubuntu/rack-downcase
+    environment:
+      - RAILS_ENV: test
+      - RACK_ENV: test
+    steps:
+      - checkout
+
+      ################
+      # BUNDLE INSTALL
+      #
+
+      - restore_cache:
+          key: rack-downcase-bundle
+
+      - run:
+          name: "Bundle"
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+
+      - save_cache:
+          key: rack-downcase-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - /home/ubuntu/.bundle
+            - /home/ubuntu/rack-downcase/vendor/bundle
+
+
+      #######
+      # TESTS
+      #
+
+      - run:
+          name: "RSpec"
+          command: "bundle exec rspec" 
