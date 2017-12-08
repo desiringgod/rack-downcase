@@ -1,4 +1,4 @@
-Copyright (c) 2016, Desiring God    
+Copyright (c) 2018, Desiring God    
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
